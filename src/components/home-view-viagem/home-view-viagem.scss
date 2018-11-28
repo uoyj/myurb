@@ -1,0 +1,20 @@
+home-view-viagem {
+    #button-voltar {
+        width: 100%;
+        text-align: center;
+    }
+    
+    #viagem-controles {
+        position: absolute;
+        top: 80%;
+        width: 100%;
+        text-align: center
+    }
+
+    @media screen and ( max-height: 720px )
+    {
+        #viagem-controles{
+            top:70%;  
+        }
+    }
+}

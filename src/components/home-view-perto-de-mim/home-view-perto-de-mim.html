@@ -1,0 +1,12 @@
+<div [hidden]="view!=='PertoDeMim'" >
+   
+    <pesquisa-coordenadas placeholder=" Perto de Mim" [(coords)]="coords" (selecionarCoords)="SelecionarNoMapa()"> </pesquisa-coordenadas>
+    <div [hidden]="ocultarBotoesHome" id="button-buscar" class="button-buscar leaflet-control">
+        <button ion-button (click)="BuscarPontos(coords)">Buscar</button>
+    </div>
+
+    <div id="button-voltar" class="leaflet-control">
+        <button ion-button (click)="Voltar()">Voltar</button>
+    </div>
+    
+</div>

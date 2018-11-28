@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button start ion-button menuToggle="menu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>MyUrb</ion-title>
+    <button end ion-button menuToggle="favoritos">
+      <ion-icon name="ios-heart-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  
+  <div *ngIf="buscando" class="spinner-container" text-center>
+    <ion-spinner></ion-spinner>
+  </div>
+  <div #map id="map">
+
+    <home-view-padrao 
+      [(buscando)]="buscando" [debug]="debug" [(view)]="view"
+       (pertoDeMimGPS)="PertoDeMimGPS($event)" (buscarRotas)="BuscarRotas($event)"
+      (selecionarCoordenadas)="SelecionarCoordenadas($event)">
+    </home-view-padrao>
+
+    <home-view-viagem 
+      [(buscando)]="buscando" [debug]="debug" [(view)]="view"
+      (desenharRota)="DesenharRota($event)" (apagarRota)="ApagarRota()"
+      (desenharCaminho)="DesenharCaminho($event)" (apagarCaminhos)="ApagarCaminhos()">
+    </home-view-viagem>
+
+    <home-view-perto-de-mim [(buscando)]="buscando" [debug]="debug"
+    (desenharPontos)="DesenharPontos($event)" (apagarPontos)="ApagarPontos()"
+    [(view)]="view" (selecionarCoordenadas)="SelecionarCoordenadas($event)">
+    </home-view-perto-de-mim>
+
+    <home-view-selecionar-coordenadas [selecaoCoords]="selecaoCoords"
+    (confirmar)="SelecionarCoordenadasConfimar($event)" [(view)]="view">
+    </home-view-selecionar-coordenadas>      
+  </div>
+</ion-content>

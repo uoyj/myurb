@@ -1,0 +1,14 @@
+<div [hidden]="view!=='Viagem'">
+    <div id="viagem-controles" class="leaflet-control">
+          <button *ngIf="!confirmado" ion-button (click)="EscolherRota()">Escolher Rota</button>
+
+          <button *ngIf="confirmado" ion-button color="danger" (click)="Reportar()">Reportar</button>
+          <button *ngIf="!confirmado" ion-button color="secondary" (click)="Confirmar()">Confirmar</button>
+
+          <div id="button-voltar" class="leaflet-control">
+                <button ion-button (click)="Voltar()">Voltar</button>
+            </div>
+    </div>
+
+    
+</div>

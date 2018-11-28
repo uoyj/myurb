@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="Voltar()">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title text-center>
+        <ion-icon name="heart"></ion-icon>
+      </ion-title>
+      <ion-title text-center>Favoritos</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <ion-segment [(ngModel)]="favoritosView">
+      <ion-segment-button value="enderecos">
+          <ion-icon name="navigate"></ion-icon> Endereços
+      </ion-segment-button>
+      <ion-segment-button value="horarios">
+          <ion-icon name="clock"></ion-icon> Horários 
+      </ion-segment-button>
+    </ion-segment>
+
+    <div [ngSwitch]="favoritosView">
+      <div *ngSwitchCase="'enderecos'">
+        <p padding-top>Toque num endereço para configurar sua localização. Toque e segure para configurar seu nome.</p>
+        <ion-list>
+          
+          <button ion-item (click)="EnderecosCoords('Casa')" (press)="EnderecosNome('Casa')"><ion-icon name="home" color="primary"></ion-icon>
+             Casa <span class="detalhe-info"> {{baseEnderecos[0].nome}}</span>
+          </button>
+          
+          <button ion-item (click)="EnderecosCoords('Trabalho')" (press)="EnderecosNome('Trabalho')"><ion-icon name="briefcase" color="primary"></ion-icon> 
+            Trabalho <span class="detalhe-info"> {{baseEnderecos[1].nome}}</span> 
+          </button>
+
+          <ion-grid no-padding>
+          <ion-row *ngFor="let e of baseEnderecos | slice: 2 ;  let i = index">
+            <ion-col class="endereco-nome">
+              <button ion-item (click)="EnderecosCoords(e.nome, i+2)" (press)="EnderecosNome(e.nome, i+2)" >
+                <ion-icon name="navigate" color="primary"></ion-icon> {{e.nome}}  
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button color="danger" outline (click)="RemoverEndereco(i+2)">Remover</button>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+
+          <button ion-item (click)="NovoEndereco('Trabalho')" ><ion-icon name="add-circle" color="primary"></ion-icon> Novo Endereço</button>
+        </ion-list>
+      </div>
+
+      <div *ngSwitchCase="'horarios'">
+          <ion-grid no-padding>
+            <ion-row *ngFor="let e of baseHorarios; let i = index">
+              <ion-col class="endereco-nome">
+                <button ion-item >
+                  <ion-icon name="bus" style="margin-right:-20px;" [color]="e.cor" item-start></ion-icon>
+                  <p class="codigo" [ngClass]="e.cor">{{e.codigo}}</p><p class="nome">{{e.nome}}</p>  
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button color="danger" outline (click)="RemoverFavorito(e, i)">Remover</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </div>
+    </div>
+
+</ion-content>

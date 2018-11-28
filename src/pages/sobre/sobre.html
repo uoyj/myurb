@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="voltar()">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title text-center><ion-icon name="information-circle"></ion-icon></ion-title>
+      <ion-title text-center>Sobre</ion-title>
+     </ion-navbar>  
+  </ion-header>
+
+<ion-content padding>
+  <h1 class="sobre-titulo" text-center>MyUrb</h1>
+  <ion-segment [(ngModel)]="sobreInfo">
+    <ion-segment-button value="comoFunciona">
+        <ion-icon name="help-circle"></ion-icon> Como Funciona 
+    </ion-segment-button>
+    <ion-segment-button value="privacidade">
+        <ion-icon name="lock"></ion-icon> Privacidade 
+    </ion-segment-button>
+    <ion-segment-button value="sobre">
+        <ion-icon name="information-circle"></ion-icon> Sobre o MyUrb 
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="sobreInfo">
+    <div *ngSwitchCase="'comoFunciona'">
+
+        <ion-card>
+            <ion-card-header text-wrap text-justify>
+                O MyUrb oferece serviços básicos, sendo que alguns são online e outros offline, para auxiliar o usuário através do transporte público de Curitiba. 
+            </ion-card-header>
+        </ion-card>
+
+        <ion-card>
+            <ion-card-header>
+                Serviços Online:
+            </ion-card-header>
+            <ion-card-content text-justify>
+                <li padding-bottom> Busca de pontos próximos: na tela inicial, aperte o botão "PERTO DE MIM" para ser redirecionado para uma tela que apresente os pontos de ônibus que se encontrem perto de sua localização. Caso não esteja com o GPS ativado, é necessário inserir um endereço manualmente atráves da barra de pesquisa desta tela. </li>
+                <li padding-bottom> Gerar rotas de ônibus: insira um endereço de origem e outro para o destino, através das barras de pesquisas, e aperte o botão de "BUSCAR" para ser redirecionado para uma tela que apresente as rotas encontradas.  </li>
+            </ion-card-content>
+        </ion-card>
+      
+        <ion-card>
+            <ion-card-header>
+                Serviços Offline:
+            </ion-card-header>
+            <ion-card-content text-justify>
+                <li padding-bottom> Consultar itinerários: através do menu lateral esquerdo, selecione a opção "ITINERÁRIOS". Na nova tela, seleciona a linha de ônibus desejada para visualizar o itinerário realizado.</li>
+                <li padding-bottom> Consultar itinerários: através do menu lateral esquerdo, selecione a opção "HORÁRIOS". Na nova tela, seleciona a linha de ônibus desejada para visualizar os horários de partida do ponto inicial.</li>
+                <li padding-bottom> Consultar pontos: através do menu lateral esquerdo, selecione a opção "PONTOS". Na nova tela, seleciona o ponto de ônibus desejada para visualizar seus detalhes.</li>
+                <li padding-bottom> Código QR: através do menu lateral esquerdo, selecione a opção "CÓDIGO QR". Na nova tela, *digite* o código para visualizar detalhes sobre o ponto de ônibus.</li>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngSwitchCase="'privacidade'">
+      <ion-card>
+        <ion-card-header text-wrap text-justify>
+          O MyUrb é uma aplicação que realiza a coleta de informações para aprimorar seu funcionamento. Aqui estão alguns esclarecimentos sobre esta prática.
+        </ion-card-header>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header text-wrap text-justify> Quais informações são coletadas? </ion-card-header>
+        <ion-card-content text-justify>São coletadas informações sobre as viagens realizadas (data, horário e ponto de ônibus de partida, horário e ponto de ônibus de chegada e linha utilizadas), adversidades reportadas sobre pontos e linhas de ônibus.</ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header text-wrap text-justify> Alguma informação pessoal é coletada?</ion-card-header>
+        <ion-card-content text-justify>Não. Tudo ocorre de forma anônima, visando não prejudicar de nenhuma forma o usuário.</ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header text-wrap text-justify> Como as informações são utilizadas?</ion-card-header>
+        <ion-card-content text-justify>As informações coletadas são utilizadas durante a criação de rotas, penalizando rotas que contém pontos e linhas de ônibus com maior quantidade de adversidades. </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header text-wrap text-justify> É possível utilizar a aplicação sem fornecer nenhuma informação?</ion-card-header>
+        <ion-card-content text-justify>Sim, e todas as funcionalidades estarão disponíveis. Para isto, durante a criação de rota, é necessário que ao final do percurso, a viagem seja cancelada.</ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header text-wrap text-justify> Quem pode acessar as informações?</ion-card-header>
+        <ion-card-content text-justify>Qualquer pessoa pode visualizar através da página web do projeto, chamada <a>MyUrbAnalytics</a>.</ion-card-content>
+      </ion-card>
+
+    </div>
+    <div *ngSwitchCase="'sobre'">
+        <ion-card>
+          <ion-card-header text-wrap text-justify> O projeto MyUrb surgiu como resultado de um Trabalho de Conclusão de Curso de Graduação em Engenharia de Computação na Universidade Tecnológica Federal do Paraná (UTFPR) - campus Curitiba. </ion-card-header>
+        </ion-card>
+        
+        <ion-card>
+            <ion-card-header text-wrap text-justify> O principal objetivo do MyUrb é auxiliar os usuários através do transporte público de Curitiba, ao mesmo tempo que disponibiliza as informações anônimas coletadas para auxiliar a administração da cidade. </ion-card-header>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header text-wrap text-justify> O projeto possui código aberto e utiliza dados abertos da cidade de Curitiba para funcionar.</ion-card-header>
+        </ion-card>
+      
+        <ion-card>
+          <ion-card-header > 
+            <ion-icon style="font-size:10rem" name="ai-wheelchair"></ion-icon> 
+            <div style="display:inline">
+              <p>Ícone <i>wheelchair</i> por Adrien Coquet do Noun Project</p>
+              <p><i>Wheelchair icon by Adrien Coquet from the Noun Project</i></p>
+            </div>
+          </ion-card-header>
+        </ion-card>
+
+      
+    </div>
+  </div>
+</ion-content>

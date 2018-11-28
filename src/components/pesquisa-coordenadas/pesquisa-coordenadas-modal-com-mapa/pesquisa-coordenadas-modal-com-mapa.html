@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-buttons left>
+        <button ion-button (click)="Fechar()">
+          <ion-icon class="voltar-arrow" name="md-arrow-back" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        Pesquisar {{placeholder}}
+      </ion-title>
+      <ion-searchbar placeholder="Digite um local" [(ngModel)]="model" (ionInput)="Buscar()" [hidden]="!hiddenMapa"></ion-searchbar>
+    </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    
+  <div *ngIf="buscando" class="spinner-container" text-center>
+    <ion-spinner></ion-spinner>
+  </div>
+  <div [ngSwitch]="listaResultados.length > 0" [hidden]="!hiddenMapa">
+    <div class="sem-resultados" *ngSwitchCase="false" >Sem resultados a exibir.</div>
+    <ion-list *ngSwitchCase="true">
+      <button ion-item *ngFor="let r of listaResultados" (click)="ResultadoClick(r)">{{r.label}}</button>
+    </ion-list>
+    <ion-list>
+      <button ion-item (click)="UsarLocal()"><ion-icon name="locate" color="primary"></ion-icon> Usar minha localização</button>
+      <button ion-item (click)="SelecionarNoMapa()"><ion-icon name="pin" color="primary"></ion-icon> Selecionar no mapa </button>
+    </ion-list>
+  </div>
+
+  <div #pmap id="pmap" [ngStyle]="{'visibility': hiddenMapa? 'hidden' : 'visible'}">
+      <div id="button-confirmar" class="leaflet-control">
+          <button ion-button (click)="ConfirmarNoMapa()">Confirmar</button>
+      </div>
+  
+      <div id="button-voltar" class="leaflet-control">
+          <button ion-button (click)="VoltarDoMapa()">Voltar</button>
+      </div>
+  </div>
+
+</ion-content>

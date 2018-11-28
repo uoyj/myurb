@@ -1,0 +1,101 @@
+
+<ion-header>
+  <ion-navbar>
+      <ion-buttons left *ngIf="modalIndicador">
+        <button ion-button (click)="Fechar()">
+          <ion-icon class="voltar-arrow" name="md-arrow-back" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-title text-center>{{linha.nome}}</ion-title>
+    <button end ion-button id="addFavorito" (click)="favoritar()">
+        <ion-icon *ngIf="!favoritado" name="ios-heart-outline" ></ion-icon>
+        <ion-icon *ngIf="favoritado" name="ios-heart" color="danger"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!carregou" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div *ngIf="carregou">
+
+    <ion-card>
+      <ion-card-header text-center>
+        <b>{{linha.nome}}</b>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <ion-icon id="cardIcon" [color]="linha.cor" name="bus"></ion-icon>
+            </ion-thumbnail>
+            <h2>
+              <b>Código da Linha:</b> {{linha.codigo}}</h2>
+            <h2 *ngIf="!linha.apenas_cartao">
+              <b>Pagamento:</b>
+              <br/> Dinheiro ou Cartão
+            </h2>
+            <h2 *ngIf="linha.apenas_cartao">
+              <b>Pagamento:</b>
+              <br/> Somente cartão
+            </h2>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <div>
+      <ion-segment [(ngModel)]="diaSelecionado">
+        <ion-segment-button value="diasUteis">
+          Dias Úteis
+        </ion-segment-button>
+        <ion-segment-button value="sabado">
+          Sábados
+        </ion-segment-button>
+        <ion-segment-button value="domingo">
+          Domingos e Feriados
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <ion-list>
+      <div *ngFor="let p of paradas">
+        <ion-item-divider [color]="cor" text-center>{{p.nome}}</ion-item-divider>
+        <div [ngSwitch]="diaSelecionado">
+          <div *ngSwitchCase="'domingo'">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-3 *ngFor="let h of p.domingo">
+                  {{h.horario}}
+                  <ion-icon name="ai-wheelchair" *ngIf="h.adaptado"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <div *ngSwitchCase="'sabado'">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-3 *ngFor="let h of p.sabado">
+                  {{h.horario}}
+                  <ion-icon name="ai-wheelchair" *ngIf="h.adaptado"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <div *ngSwitchCase="'diasUteis'">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-3 *ngFor="let h of p.diasUteis">
+                  {{h.horario}}
+                  <ion-icon name="ai-wheelchair" *ngIf="h.adaptado"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+  <!--end loaded-->
+</ion-content>

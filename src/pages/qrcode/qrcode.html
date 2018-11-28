@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="voltar()">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title text-center><ion-icon name="qr-scanner"></ion-icon></ion-title>
+      <ion-title text-center>Código QR</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content>
+
+  <div *ngIf="ponto">
+    <ion-card>
+    <ion-card-header text-center>
+      <h1>Ponto {{ponto.properties.numero_ponto}}</h1>
+    </ion-card-header>
+      <ion-list padding-left>
+          <ion-item>
+            <ion-icon name="locate" item-start></ion-icon>
+            {{ponto.geometry.coordinates}}
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="navigate" item-start></ion-icon>
+            {{ponto.properties.endereco}}
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="information-circle" item-start></ion-icon>
+            {{ponto.properties.tipo}}
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    
+      <ion-card>
+      <ion-card-header text-center>
+          Linhas que passam aqui:
+      </ion-card-header>
+      
+      <ion-list padding-left>
+        <ion-item *ngFor="let l of ponto.properties.linhas">
+            <ion-thumbnail item-start>
+              <ion-icon class="card-bus-icon" [color]="l.cor" name="bus"></ion-icon>
+            </ion-thumbnail>
+              <h2 padding-bottom> <b>{{l.nome}}</b> </h2>
+              <h2><b>Código da Linha:</b> {{l.codigo}}</h2>
+              
+              <h2 *ngIf="!l.apenas_cartao"> <b>Pagamento:</b>  Dinheiro ou Cartão </h2>
+              <h2 *ngIf="l.apenas_cartao"> <b>Pagamento:</b>  Somente cartão </h2>
+        </ion-item>
+      </ion-list>
+      </ion-card>
+    </div>
+    
+    <div *ngIf="false">
+      <ion-input [(ngModel)]="testQR"> Test</ion-input>
+      <button ion-button (click)="Test()"> Test </button>
+    </div>
+    <div id="button-qr">
+      <button ion-button full icon-left (click)="Click()" color="primary">Digitalizar <ion-icon padding-left name="qr-scanner"></ion-icon></button>
+    </div>
+</ion-content>

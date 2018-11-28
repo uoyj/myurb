@@ -1,0 +1,14 @@
+<div [hidden]="view!=='Padrao'">
+  <div id="bar-pesquisa" class="leaflet-control">
+    <pesquisa-coordenadas placeholder="Origem" [(coords)]="coordenadasBusca.origem" (selecionarCoords)="SelecionarNoMapa('origem')"> </pesquisa-coordenadas>
+    <pesquisa-coordenadas placeholder="Destino" [(coords)]="coordenadasBusca.destino" (selecionarCoords)="SelecionarNoMapa('destino')"> </pesquisa-coordenadas>
+  </div>
+
+  <div id="button-buscar" class="button-buscar leaflet-control">
+    <button ion-button (click)="BuscarRota()" (press)="BuscarRotaComposta()">Buscar</button>
+  </div>
+
+  <div [hidden]="ocultarBotoesHome" id="button-pertodemim" class="leaflet-control">
+    <button ion-button (click)="PertoDeMim()">Perto de Mim</button>
+  </div>
+</div>

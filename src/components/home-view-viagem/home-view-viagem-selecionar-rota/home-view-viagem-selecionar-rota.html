@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-buttons left>
+        <button ion-button (click)="Fechar()">
+          <ion-icon class="voltar-arrow" name="md-arrow-back" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header >
+        Escolha uma opção de filtro
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Filtros</ion-label>
+      <ion-select [(ngModel)]="filtro" cancelText="Cancelar" (ionChange)="filtroChange($event)">
+        <ion-option value="distancia"> Distância a pé</ion-option>
+        <ion-option value="ocorrencias">Menos ocorrências</ion-option>
+        <!-- <ion-option value="preco">Preço</ion-option> -->
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header >
+        Escolha uma opção de rota
+    </ion-list-header>
+    <ion-item ion-item *ngFor="let r of rotas; let i = index" (click)="SelecionaRota(r)">
+      <ion-icon name="bus" color="primary"></ion-icon> {{r.linha.codigo}} {{r.linha.nome}} 
+      <span class="detalhe-info" *ngIf="filtro=='distancia' && rotaDist(r)!==null">{{rotaDist(r) | number:'1.0-0'}}m andando</span>
+      <span class="detalhe-info" *ngIf="filtro=='distancia' && rotaDist(r)==null">Sem informação de distância a pé</span>
+      
+      <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)==null"> Sem informação para ocorrências</span>
+      <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)!==null && i == minOcorrenciasIndex"> Rota com menos ocorrências</span>
+      <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)!==null && i == maxOcorrenciasIndex"> Rota com mais ocorrências</span>
+      
+      
+    </ion-item>
+
+    <ion-item ion-item *ngFor="let r of rotasCompostas; let i = index" (click)="SelecionaRota(r)">
+      <ion-icon name="bus" color="primary" padding-right></ion-icon><ion-icon name="ios-arrow-forward" color="primary"></ion-icon><ion-icon name="ios-arrow-forward" color="primary"></ion-icon><ion-icon name="bus" color="primary" padding-left></ion-icon>
+        <p>
+          {{r.origem_terminal[0].linha.codigo}} {{r.origem_terminal[0].linha.nome}} 
+          <ion-icon name="ios-arrow-forward" color="primary"></ion-icon><ion-icon name="ios-arrow-forward" color="primary"></ion-icon>
+          {{r.terminal_destino[0].linha.codigo}} {{r.terminal_destino[0].linha.nome}} 
+        </p> 
+       
+        <span class="detalhe-info" *ngIf="filtro=='distancia' && rotaDist(r)!==null">{{rotaDist(r) | number:'1.0-0'}}m andando</span>
+        <span class="detalhe-info" *ngIf="filtro=='distancia' && rotaDist(r)==null">Sem informação de distância a pé</span>
+      
+        <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)==null"> Sem informação para ocorrências</span>
+        <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)!==null && i == minOcorrenciasIndex"> Rota com menos ocorrências</span>
+        <span class="detalhe-info" *ngIf="filtro=='ocorrencias' && ocorrenciasQuantizadas(r)!==null && i == maxOcorrenciasIndex"> Rota com mais ocorrências</span>
+      
+    </ion-item>
+
+    <ion-item ion-item (click)="Caminhando()" *ngIf="caminhando"><ion-icon name="walk" color="primary"></ion-icon> Ir a pé <span class="detalhe-info">{{caminhando.properties.distancia | number:'1.0-0'}}m andando</span></ion-item>
+    <ion-item ion-item *ngIf="!caminhando"><ion-icon name="walk" color="dark"></ion-icon> Não foi possível obter um caminho a pé </ion-item>
+  </ion-list>
+
+</ion-content>

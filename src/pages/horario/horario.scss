@@ -1,0 +1,46 @@
+page-horario {
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    p.nome{
+        display: inline-block;
+        margin: 0 7px 0 0;
+        padding: 0.2em 0.7em;
+        text-align: center;
+    }
+    p.codigo{        
+        background: black;
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        margin: 0 7px 0 0;
+        padding: 0.2em 0.7em;
+        text-align: center;
+        width: 59px;
+    }
+    p.codigo.amarela{
+        background: #f4bb1d;
+    }
+    p.codigo.azul{
+        background: #3354c0;
+    }
+    p.codigo.branca{
+        background: #f2f2f0;
+        color: black;
+    }
+    p.codigo.laranja{
+        background: #fd7526;
+    }
+    p.codigo.verde{
+        background: #17a472;
+    }
+    p.codigo.vermelha{
+        background: #fd2a26;
+    }
+    p.codigo.prata{
+        background: #9ba7a8;
+    }
+}

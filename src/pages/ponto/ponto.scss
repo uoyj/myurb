@@ -1,0 +1,43 @@
+page-ponto {
+    #pontomap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .leaflet-popup-content .endereco{
+        font-weight: bold;
+    }
+
+    .leaflet-popup-content p {
+        margin: 3px 0;
+    }
+
+    .leaflet-popup-content p .codigo{
+        margin: 0 7px 0 0;
+        font-weight: bold;
+        background: black;
+        color: white;
+        padding: 0.2em 0.7em;
+    }
+
+    .leaflet-popup-content p .codigo.branca{
+        background: #f2f2f0;
+        color: black;
+    }
+    .leaflet-popup-content p .codigo.verde{
+        background: #17a472;
+    }
+    .leaflet-popup-content p .codigo.prata{
+        background: #9ba7a8;
+    }
+    .leaflet-popup-content p .codigo.amarela{
+        background: #f4bb1d;
+    }
+    .leaflet-popup-content p .codigo.vermelha{
+        background: #fd2a26;
+    }
+    .leaflet-popup-content p .codigo.azul{
+        background: #3354c0;
+    }
+}

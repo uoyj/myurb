@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="voltar()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+      <ion-icon name="clock"></ion-icon>
+    </ion-title>
+    <ion-title text-center>Horários</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-searchbar [formControl]="buscaControl" (ionInput)="onBuscaInput()" placeholder="Pesquise sua linha">Linha</ion-searchbar>
+    </ion-card-header>
+
+    <div *ngIf="buscando" class="spinner-container" text-center>
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div *ngIf="problema">
+      ERRO: {{problema}}
+    </div> 
+    
+    <ion-list>
+      <div *ngFor="let c of categorias">
+        <ion-item-divider color="primary" text-center>{{c}}</ion-item-divider>
+        <button ion-item *ngFor="let l of linhas_filtradas | linhasCategorias: c" (click)="exibirHorario(l)" >
+          <ion-icon name="bus" style="margin-right:-20px;" [color]="l.cor" item-start></ion-icon>
+          <p class="codigo" [ngClass]="l.cor">{{l.codigo}}</p><p class="nome">{{l.nome}}</p>
+        </button>
+      </div>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

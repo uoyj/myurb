@@ -1,0 +1,21 @@
+page-pesquisa-coordenadas-modal-com-mapa {
+    #pmap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    #button-voltar {
+        position: absolute;
+        top: 76%;
+        width: 100%;
+        text-align: center;
+    }
+
+    #button-confirmar {
+        position: absolute;
+        top: 86%;
+        width: 100%;
+        text-align: center;
+    }
+}

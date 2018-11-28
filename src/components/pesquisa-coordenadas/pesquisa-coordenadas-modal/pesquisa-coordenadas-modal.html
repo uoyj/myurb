@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-buttons left>
+        <button ion-button (click)="Fechar()">
+          <ion-icon class="voltar-arrow" name="md-arrow-back" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        Pesquisar {{placeholder}}
+      </ion-title>
+      <ion-searchbar placeholder="Digite um local" [(ngModel)]="model" (ionInput)="Buscar()"></ion-searchbar>
+    </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="buscando" class="spinner-container" text-center>
+    <ion-spinner></ion-spinner>
+  </div>
+  <div [ngSwitch]="listaResultados.length > 0">
+    <div class="sem-resultados" *ngSwitchCase="false" >Sem resultados a exibir.</div>
+    <ion-list *ngSwitchCase="true">
+      <button ion-item *ngFor="let r of listaResultados" (click)="ResultadoClick(r)">{{r.label}}</button>
+    </ion-list>
+    <ion-list>
+      <button ion-item (click)="UsarLocal()"><ion-icon name="locate" color="primary"></ion-icon> Usar minha localização</button>
+      <button ion-item (click)="SelecionarNoMapa()"><ion-icon name="pin" color="primary"></ion-icon> Selecionar no mapa </button>
+    </ion-list>
+
+    <ion-list *ngIf="favoritos">
+      <h5>Favoritos</h5>
+      <button *ngIf="favoritos[0]" ion-item (click)="FavoritoClick(favoritos[0])" ><ion-icon name="home" color="primary"></ion-icon>
+        Casa <span class="detalhe-info"> {{favoritos[0].nome}}</span>
+     </button>
+     
+     <button *ngIf="favoritos[1]" ion-item (click)="FavoritoClick(favoritos[1])" ><ion-icon name="briefcase" color="primary"></ion-icon> 
+       Trabalho <span class="detalhe-info"> {{favoritos[1].nome}}</span> 
+     </button>
+
+      <button ion-item *ngFor="let f of favoritos | slice: 2 " (click)="FavoritoClick(f)" ><ion-icon name="navigate" color="primary" class="locate"></ion-icon>{{f.nome}}</button>
+    </ion-list>
+  </div>
+
+</ion-content>
