@@ -14,7 +14,7 @@ YouTube - [Projeto MyUrb](https://youtu.be/VPC1_T9JgcI)
 ## Online Version
 Firebase - [MyUrb](https://myurbbeta.firebaseapp.com/)
 
-## Instalation
+## Installation
 You must use Node version 10 (e.g. v10.4.0)  and run `npm install`. Also install Ionic client by running `npm install -g @ionic/cli`.
 
 ## Building
