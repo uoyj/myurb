@@ -2,11 +2,11 @@
 MyUrb is an open source project developed with the aim of offering a mobility app for Curitiba citizens and possibly escalate its scope to other cities. This applications consumes data from an API that would provid a list of bus stops, lines and terminals and woulc calculate routes between two selected locations taking terminal connections into account, thus allowing the user to save money.
 Unfortunately the API is down, but you can still see how the app interface looks by visiting the Firebase link below or running this project.
 
-![]()
-![]()
-![]()
-![]()
-![]()
+![](https://github.com/uoyj/myurb/blob/master/myurb_prints/tela_app1.png?raw=true)
+![](https://github.com/uoyj/myurb/blob/master/myurb_prints/tela_app2.png?raw=true)
+![](https://github.com/uoyj/myurb/blob/master/myurb_prints/tela_app3.png?raw=true)
+![](https://github.com/uoyj/myurb/blob/master/myurb_prints/tela_app4.png?raw=true)
+![](https://github.com/uoyj/myurb/blob/master/myurb_prints/tela_app5.png?raw=true)
 
 ## Demonstration Video
 YouTube - [Projeto MyUrb](https://youtu.be/VPC1_T9JgcI)
